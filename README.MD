@@ -108,8 +108,7 @@ cp config.yml "$HOME"/.cloudflared
 ```
 
 ## Deploy TeleICU Middleware
-- Update the `.env` file. Replace values for hostname, `FACILITY_ID`, and SENTRY_ENV. SENTRY_ENV can be a unique 
-identifier.   
+- Update the `.env` file. Replace values for hostname, and `FACILITY_ID`
 Example:
 ```
 HOSTNAME=middleware.example.com
