@@ -150,5 +150,142 @@ sudo systemctl enable cloudflared
   - Visit the asset details page
   - Click on configure and update the hostname, IP address of the device
   - Assign Bed as the Bed we created earlier.
+
+## Send Data from Equipment to Middleware
+### Request Details
+#### Request Endpoint 
+- http://localhost:8001/update_observations
+#### Request Method
+- POST
+#### Data Format
+```
+[
+  [
+    observation(json),
+    observation(json)
+  ]
+]
+```
+A single observation is represented as a JSON string, with observed parameter name as key and observed parameter value 
+as value.  
+Example: 
+```
+    {
+      "observation_id": "heart-rate",
+      "device_id": "192.168.1.13",
+      "date-time": "2022-06-03 08:21:48",
+      "patient-id": "3",
+      "patient-name": "PATIENT 3",
+      "status": "Message-Leads Off",
+      "value": null,
+      "unit": "bpm",
+      "interpretation": "NA",
+      "low-limit": 40,
+      "high-limit": 120
+    }
+```
+
+The actual payload will be a two-dimensional array of these objects.
+
+An example of the payload is given below  
+```
+[
+  [
+    {
+      "observation_id": "heart-rate",
+      "device_id": "192.168.1.13",
+      "date-time": "2022-06-03 08:21:48",
+      "patient-id": "3",
+      "patient-name": "PATIENT 3",
+      "status": "Message-Leads Off",
+      "value": null,
+      "unit": "bpm",
+      "interpretation": "NA",
+      "low-limit": 40,
+      "high-limit": 120
+    },
+    {
+      "observation_id": "ST",
+      "device_id": "192.168.1.13",
+      "date-time": "2022-06-03 08:21:48",
+      "patient-id": "3",
+      "patient-name": "PATIENT 3",
+      "status": "Message-Leads Off",
+      "value": null,
+      "unit": "mV",
+      "interpretation": "NA",
+      "low-limit": -0.3,
+      "high-limit": 0.3
+    },
+    {
+      "observation_id": "SpO2",
+      "device_id": "192.168.1.13",
+      "date-time": "2022-06-03 08:21:48",
+      "patient-id": "3",
+      "patient-name": "PATIENT 3",
+      "status": "final",
+      "value": 95,
+      "unit": "%",
+      "interpretation": "normal",
+      "low-limit": 90,
+      "high-limit": 100
+    },
+    {
+      "observation_id": "pulse-rate",
+      "device_id": "192.168.1.13",
+      "date-time": "2022-06-03 08:21:48",
+      "patient-id": "3",
+      "patient-name": "PATIENT 3",
+      "status": "final",
+      "value": 71,
+      "unit": "bpm",
+      "interpretation": "normal",
+      "low-limit": 40,
+      "high-limit": 120
+    },
+    {
+      "observation_id": "respiratory-rate",
+      "device_id": "192.168.1.13",
+      "date-time": "2022-06-03 08:21:48",
+      "patient-id": "3",
+      "patient-name": "PATIENT 3",
+      "status": "Message-Leads Off",
+      "value": null,
+      "unit": "brpm",
+      "interpretation": "NA",
+      "low-limit": 6,
+      "high-limit": 40
+    },
+    {
+      "observation_id": "body-temperature1",
+      "device_id": "192.168.1.13",
+      "date-time": "2022-06-03 08:21:48",
+      "patient-id": "3",
+      "patient-name": "PATIENT 3",
+      "status": "final",
+      "value": 76.5,
+      "unit": "deg F",
+      "interpretation": "low",
+      "low-limit": 86.0,
+      "high-limit": 107.6
+    },
+    {
+      "observation_id": "body-temperature2",
+      "device_id": "192.168.1.13",
+      "date-time": "2022-06-03 08:21:48",
+      "patient-id": "3",
+      "patient-name": "PATIENT 3",
+      "status": "Message-Measurement Invalid",
+      "value": null,
+      "unit": "deg F",
+      "interpretation": "NA",
+      "low-limit": 86.0,
+      "high-limit": 107.6
+    }
+  ]
+]
+```
+
+### Post Deployment
 - Visit the Patient Dashboard page to see the data coming from the Asset that is linked to the bed on which patient is 
 assigned/moved.
