@@ -166,8 +166,7 @@ sudo systemctl enable cloudflared
   ]
 ]
 ```
-A single observation is represented as a JSON string, with observed parameter name as key and observed parameter value 
-as value.  
+A single observation is represented as a JSON string, based on [FHIR observation resource](https://build.fhir.org/observation.html) with observed parameter name as key and observed parameter value as value.
 Example: 
 ```
     {
