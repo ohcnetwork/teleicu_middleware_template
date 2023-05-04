@@ -66,5 +66,17 @@ services:
         max-size: "10m"
         max-file: "3"
 
+#  # mock_cns_req
+#  mock_cns_req:
+#    restart: always
+#    image: ghcr.io/coronasafe/mock-cns-req:latest
+#    container_name: mock_cns_req
+#    ports:
+#    - "8002:8002"
+#    logging:
+#      options:
+#        max-size: "10m"
+#        max-file: "3"
+
 volumes:
   postgres-data:
