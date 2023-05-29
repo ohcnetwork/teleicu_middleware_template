@@ -18,6 +18,20 @@ services:
         max-size: "10m"
         max-file: "3"
 
+  # rtsptoweb:
+  roverr_rtsp_stream:
+    restart: always
+    image: ghcr.io/deepch/rtsptoweb:latest
+    container_name: roverr_rtsp_stream
+    volumes:
+      - ./config.json:/config/config.json
+    ports:
+      - "8080:8080"
+    logging:
+        options:
+            max-size: "10m"
+            max-file: "3"
+
   # teleicu_middleware
   teleicu_middleware:
     restart: always
@@ -35,10 +49,8 @@ services:
   # proxies requests to internal services
   reverse-proxy:
     restart: always
-    image: nginx:alpine
+    image: ghcr.io/coronasafe/teleicu_nginx/teleicu_nginx:latest
     container_name: reverse-proxy
-    volumes:
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf
     depends_on:
       - teleicu_middleware
     ports:
