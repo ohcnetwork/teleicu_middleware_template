@@ -422,8 +422,9 @@ The middleware setup also consists of an [RTSPtoWeb](https://github.com/deepch/R
 from the camera. The player can be accessed at http://localhost:8080. In the player, add a stream and 
 give the RTSP URL of the camera feed. The player will then stream the feed from the camera. 
 > RTSP URL can vary from device to device but a general look is as below:  
-
-```rtsp://<username>:<password>@<camera IP>:<port>/stream```
+> ```
+> rtsp://<username>:<password>@<camera IP>:<port>/stream
+> ```
 
 Similar to adding a Vitals Monitor, add a new asset with asset type as `ONVIF Camera` and give the following details:
 ```
