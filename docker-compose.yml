@@ -35,7 +35,7 @@ services:
   # teleicu_middleware
   teleicu_middleware:
     restart: always
-    image: ghcr.io/coronasafe/teleicu_middleware:production-latest
+    image: ghcr.io/ohcnetwork/teleicu_middleware:production-latest
     container_name: teleicu_middleware
     env_file:
       - ./.env
@@ -49,7 +49,7 @@ services:
   # proxies requests to internal services
   reverse-proxy:
     restart: always
-    image: ghcr.io/coronasafe/teleicu_nginx/teleicu_nginx:latest
+    image: ghcr.io/ohcnetwork/teleicu_nginx/teleicu_nginx:latest
     container_name: reverse-proxy
     depends_on:
       - teleicu_middleware
@@ -81,7 +81,7 @@ services:
 #  # mock_cns_req
 #  mock_cns_req:
 #    restart: always
-#    image: ghcr.io/coronasafe/mock-cns-req:latest
+#    image: ghcr.io/ohcnetwork/mock-cns-req:latest
 #    container_name: mock_cns_req
 #    ports:
 #    - "8002:8002"
